@@ -1,0 +1,52 @@
+:root{--bg:#f6f8fa;--card:#ffffff;--accent:#0d6efd;--muted:#6c757d;--ok:#198754;--warn:#ffc107}
+*{box-sizing:border-box}
+.leaflet-container{font-family: Inter,Segoe UI,Arial,Helvetica,sans-serif}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+.body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#222}
+.topbar{height:56px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 1px 8px rgba(0,0,0,0.08)}
+.brand{font-weight:700}
+.token-area input{width:320px;padding:8px;border-radius:8px;border:1px solid #eee;background:#fafbff}
+.layout{display:flex;height:calc(100vh - 56px)}
+.sidebar{width:420px;padding:18px;background:transparent;overflow:auto}
+.content{flex:1;padding:12px;display:flex;align-items:flex-start;justify-content:center;max-width:calc(100% - 440px)}
+.map{height:100%;border-radius:10px;box-shadow:0 8px 30px rgba(13,110,253,0.06);width:100%;max-width:980px}
+.sidebar section{background:var(--card);padding:14px;border-radius:12px;margin-bottom:14px;box-shadow:0 6px 20px rgba(15,23,42,0.04)}
+.sidebar h3{margin:0 0 8px 0}
+input,select{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #e6e9ee}
+.row{display:flex;gap:10px}
+.form-row{margin-bottom:12px}
+.btn{padding:8px 12px;border-radius:8px;border:1px solid #eef2ff;background:#fff;cursor:pointer;transition:all .14s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(13,110,253,0.08)}
+.btn.primary{background:var(--accent);color:#fff;border:none;box-shadow:0 10px 30px rgba(13,110,253,0.12)}
+.bike-card{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:10px;margin-bottom:10px;border:1px solid #f3f6fb;background:linear-gradient(180deg,#fff,#fbfdff)}
+.badge{padding:6px 10px;border-radius:999px;font-size:13px}
+.badge.available{background:#e6f4ea;color:var(--ok)}
+.badge.in_use{background:#fff0f0;color:#d63333}
+.badge.maintenance{background:#fff7e6;color:#8a6d00}
+.muted{color:var(--muted);font-size:13px}
+
+/* marker pulse for available */
+.marker{position:relative;width:26px;height:26px}
+.marker .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);display:inline-block;position:absolute;left:8px;top:8px;border:2px solid #fff}
+.marker .pulse{position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:rgba(25,135,84,0.18);animation: pulse 1.6s infinite}
+@keyframes pulse{0%{transform:scale(0.9);opacity:0.9}70%{transform:scale(1.6);opacity:0}100%{transform:scale(1.6);opacity:0}}
+
+/* color variants */
+.marker.green .dot{background:#198754}
+.marker.orange .dot{background:#f59e0b}
+.marker.red .dot{background:#dc3545}
+
+
+/* responsive */
+@media(max-width:900px){.sidebar{width:100%;height:320px;padding:12px}.layout{flex-direction:column}.map{height:calc(100vh - 56px - 360px);max-width:100%}}
+
+.login-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:50;background:
+	linear-gradient(rgba(0,0,0,0.36), rgba(0,0,0,0.36)),
+	url('/static/images/bikes_new.png') center/cover no-repeat,
+	url('https://images.unsplash.com/photo-1500048993953-df1c7dbf83b0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+	backdrop-filter: blur(4px);
+}
+.login-card{background:var(--card);padding:20px;border-radius:10px;min-width:320px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+.login-card h2{margin:0 0 12px 0}
+.login-card input{margin:8px 0}
+

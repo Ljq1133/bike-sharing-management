@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>共享单车示例 GUI</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0d6efd">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-card">
+      <h2>登录</h2>
+      <input id="overlay_username" placeholder="用户名">
+      <input id="overlay_password" type="password" placeholder="密码">
+      <div class="row">
+        <button id="overlayLogin" class="btn primary">登录</button>
+        <button id="showRegister" class="btn">去注册</button>
+      </div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">未注册？点击“去注册”在弹窗中完成注册。</div>
+    </div>
+  </div>
+
+  <div id="app" style="display:none">
+  <header class="topbar">
+    <div class="brand">共享单车示例</div>
+    <div class="token-area">Token: <input id="token" placeholder="Bearer token"></div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <section class="controls">
+        <h3>操作</h3>
+        <div class="row">
+          <button id="locate" class="btn">定位并查看周围单车</button>
+        </div>
+        <div class="row form-row" style="flex-direction:column;align-items:flex-start;">
+          <label style="font-weight:600;margin-bottom:6px">模式</label>
+          <select id="modeSelect" style="margin-top:0;min-width:220px">
+            <option value="manual">手动坐标（使用下面的经纬度）——按距离升序</option>
+            <option value="geolocate">自动获取当前位置（浏览器定位）——按距离升序</option>
+            <option value="top_rated">按评分从高到低排序（不按距离）</option>
+            <option value="top_used">按使用次数从高到低排序（不按距离）</option>
+          </select>
+        </div>
+        <div id="manualCoordsContainer">
+          <div class="row">
+            <label>手动坐标 (可留空使用地图中心)</label>
+          </div>
+          <div class="row">
+            <input id="manualLat" placeholder="纬度 (lat)" />
+            <input id="manualLng" placeholder="经度 (lng)" />
+          </div>
+        </div>
+      </section>
+
+      <section id="maintainerControls" class="controls" style="display:none">
+        <h3>维护人员面板</h3>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">仅维护人员可见：添加或批量修改车辆状态</div>
+        <input id="newLat" placeholder="经度 (lat)" />
+        <input id="newLng" placeholder="纬度 (lng)" />
+        <div class="row"><button id="addBike" class="btn primary">添加单车</button></div>
+      </section>
+
+      <section class="list">
+        <h3>车辆列表</h3>
+        <div id="bikes"></div>
+      </section>
+      <section class="list">
+        <h3 id="rentalsHeader">我的租赁</h3>
+        <div id="myRentals"></div>
+      </section>
+    </aside>
+
+    <main class="content">
+      <div id="map" class="map"></div>
+    </main>
+  </div>
+  </div>
+  </div>
+
+  <script src="/static/gui.js"></script>
+</body>
+</html>
